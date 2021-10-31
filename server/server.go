@@ -6,10 +6,9 @@ import (
 	"os"
 )
 
-var e *echo.Echo
 
 func Init()  {
-	e = echo.New()
+	e := echo.New()
 	routes.Setup(e)
 	e.Logger.Fatal(e.Start(":" + os.Getenv("APP_PORT")))
 }
