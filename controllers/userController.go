@@ -64,7 +64,7 @@ func DeleteUser(c echo.Context) error {
 		return c.JSON(http.StatusBadRequest, "id is not valid!")
 	}
 
-	statusCode, massage := services.DeleteOneUser(uint(id))
+	statusCode, massage := services.DeleteOneUser(id)
 
 	return c.JSON(statusCode, massage)
 }
