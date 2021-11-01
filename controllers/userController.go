@@ -73,7 +73,7 @@ func PutUser(c echo.Context) error {
 	id, err := services.ParseID(c.Param("id"))
 
 	if err != nil {
-		return c.JSON(http.StatusBadRequest, "id is not valid!")
+		return c.JSON(http.StatusBadRequest, "id is not valid1!")
 	}
 
 	firstName := c.FormValue("first_name")

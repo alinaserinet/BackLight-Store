@@ -8,6 +8,11 @@ import (
 )
 
 func CreateOneUser(user *models.User) error {
+	var err error
+	user.Password, err = Hash(user.Password)
+	if err != nil {
+		return err
+	}
 	result := database.DB.Create(user)
 	return result.Error
 }
@@ -26,7 +31,6 @@ func GetAllUsers() ([]models.User, error) {
 func GetOneUser(id uint) (models.User, error) {
 	user := models.User{}
 	result := database.DB.Where("id = ?", id).Find(&user)
-
 	return user, result.Error
 }
 
@@ -48,6 +52,14 @@ func DeleteOneUser(id uint) (int, string) {
 }
 
 func UpdateOneUser(id uint, user *models.User) (int, string) {
+	var err error
+	user.Password, err = Hash(user.Password)
+
+	if err != nil {
+		return http.StatusInternalServerError,
+			fmt.Sprintf("An error has occurred: %s", err)
+	}
+
 	result := database.DB.Model(models.User{}).Where("id = ?", id).Updates(user)
 
 	if result.Error != nil {
