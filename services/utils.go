@@ -4,8 +4,8 @@ import (
 	"strconv"
 )
 
-func ParseID(param string) (uint, error) {
-	parsed, err := strconv.ParseUint(param, 10, 64)
+func ParseUint(number string) (uint, error) {
+	parsed, err := strconv.ParseUint(number, 10, 64)
 	if err != nil {
 		return 0, err
 	}

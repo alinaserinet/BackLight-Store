@@ -18,7 +18,7 @@ func GetAllUsers(c echo.Context) error {
 }
 
 func GetOneUser(c echo.Context) error {
-	id, err := services.ParseID(c.Param("id"))
+	id, err := services.ParseUint(c.Param("id"))
 
 	if err != nil {
 		return c.JSON(http.StatusBadRequest, "id is not valid!")
@@ -58,7 +58,7 @@ func SaveUser(c echo.Context) error {
 }
 
 func DeleteUser(c echo.Context) error {
-	id, err := services.ParseID(c.Param("id"))
+	id, err := services.ParseUint(c.Param("id"))
 
 	if err != nil {
 		return c.JSON(http.StatusBadRequest, "id is not valid!")
@@ -70,7 +70,7 @@ func DeleteUser(c echo.Context) error {
 }
 
 func PutUser(c echo.Context) error {
-	id, err := services.ParseID(c.Param("id"))
+	id, err := services.ParseUint(c.Param("id"))
 
 	if err != nil {
 		return c.JSON(http.StatusBadRequest, "id is not valid1!")
